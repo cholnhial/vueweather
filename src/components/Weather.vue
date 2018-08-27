@@ -4,10 +4,10 @@
       <div class="weather  justify-content-center align-self-baseline mt-5">
         <div class="main-weather">
           <span class="">
-             <i :class="'main-weather-icon ' + weathercode"></i>
-          <span class="temp">{{ weather.temp }}&deg;</span>
+         <!--    <img :src="'assets/icons/' + weather.WeatherIcon + '.png'">
+          <span class="temp">{{ weather.Temperature.Value }}&deg;</span>-->
           </span>
-          <p class="text-center weather-description display-medium">{{ weather.description }}</p>
+          <p class="text-center weather-description display-medium">{{ weather.WeatherText }}</p>
         </div>
       </div>
     </div>
@@ -46,36 +46,22 @@
 
 <script>
 import 'weather-icons/css/weather-icons.css'
-
-import {WeatherAPI} from '../WeatherAPI'
-
-let weatherApi = new WeatherAPI('46bbcf85e9a2e83913ce8271ffc4a79d')
+import {getCityWeatherByLocationKey} from '../api/weather'
 
 export default {
   name: 'Weather',
   data: function () {
     return {
-      weather: {},
-      weathercode: ''
+      weather: {}
     }
   },
   created: function () {
-    const cityId = this.$route.query.id
-    weatherApi.getWeatherAPIContext().setCityId(cityId)
-    weatherApi.getWeatherAPIContext().getSmartJSON((err, data) => {
-      if (err) {
-        console.log(err)
-      }
-
-      if (data) {
-        this.weather = data
-        this.weathercode = weatherApi.getWeatherIcon(data.weathercode)
-      }
-    })
-    weatherApi = new WeatherAPI('46bbcf85e9a2e83913ce8271ffc4a79d');
-    weatherApi.getWeatherAPIContext().setCityId(cityId);
-    weatherApi.getWeatherAPIContext().getWeatherForecast(function (err, obj) {
-      console.log(obj)
+    const cityId = this.$route.query.id;
+    getCityWeatherByLocationKey(cityId).then(response => {
+      this.weather = response.body[0];
+      console.log(this.weather);
+    }, response => {
+      // error
     })
   },
   methods: {

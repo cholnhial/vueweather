@@ -17,13 +17,13 @@
           :on-select="onCitySelected()">
         </autocomplete>-->
         <autocomplete
-          url="http://api.openweathermap.org/data/2.5/find"
-          anchor="name"
+          url="http://dataservice.accuweather.com/locations/v1/cities/autocomplete"
+          anchor="city"
           label="country"
           placeholder="e.g. London"
           name="autocomplete"
           :classes="{'input': 'form-control align-self-center mt-5 mb-2'}"
-          :customParams="{'appid': 'a45ae09cab0dc5983275de1c4e64dcf0'}"
+          :customParams="{'apikey': 'r0RszRlcQ1cGdK9UxDUBZJzVl4vk2ukO', 'language': 'en-au'}"
           :process="process"
           :on-select="onCitySelected"
         >
@@ -40,7 +40,6 @@
 
 <script>
 import Autocomplete from 'vue2-autocomplete-js'
-import {WeatherAPI} from '../WeatherAPI'
 require('vue2-autocomplete-js//dist/style/vue2-autocomplete.css')
 
 export default {
@@ -54,16 +53,16 @@ export default {
   },
   methods: {
     onSearchWeather () {
-      this.$router.push({path: 'weather', query: {id: this.searchResults.id, name: this.searchResults.name}})
+      this.$router.push({path: 'weather', query: {id: this.searchResults.cityId, name: this.searchResults.city}})
     },
     onCitySelected (data) {
       this.searchResults = data
     },
     process (json) {
       var results = []
-      if (json.list) {
-        results = json.list.map(e => {
-          return {id: e.id, name: e.name, country: e.sys.country}
+      if (json) {
+        results = json.map(e => {
+          return { city: e.LocalizedName, country: e.Country.LocalizedName, cityId: e.Key }
         })
       }
       return results
