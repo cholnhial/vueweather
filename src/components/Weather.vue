@@ -3,9 +3,10 @@
     <div class="d-flex justify-content-center ">
       <div class="weather  justify-content-center align-self-baseline mt-5">
         <div class="main-weather">
+          <h3 class="text-center text-day border-bottom">{{ currentDay }}</h3>
           <span class="">
-         <!--    <img :src="'assets/icons/' + weather.WeatherIcon + '.png'">
-          <span class="temp">{{ weather.Temperature.Value }}&deg;</span>-->
+             <img :src="'static/icons/' + weather.WeatherIcon + '.png'">
+          <span class="temp">{{ weather.Temperature.Metric.Value }}&deg;</span>
           </span>
           <p class="text-center weather-description display-medium">{{ weather.WeatherText }}</p>
         </div>
@@ -47,19 +48,21 @@
 <script>
 import 'weather-icons/css/weather-icons.css'
 import {getCityWeatherByLocationKey} from '../api/weather'
+import * as moment from 'moment'
 
 export default {
   name: 'Weather',
   data: function () {
     return {
-      weather: {}
+      weather: {},
+      currentDay: ''
     }
   },
   created: function () {
-    const cityId = this.$route.query.id;
+    const cityId = this.$route.query.id
     getCityWeatherByLocationKey(cityId).then(response => {
-      this.weather = response.body[0];
-      console.log(this.weather);
+      this.weather = response.body[0]
+      this.currentDay = moment().format('dddd')
     }, response => {
       // error
     })
@@ -94,6 +97,10 @@ export default {
 .temp {
 
   color: white;
+}
+
+.text-day {
+  color: #F2A137 !important;
 }
 
 .weather-description {
