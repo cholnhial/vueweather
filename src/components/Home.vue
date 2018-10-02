@@ -30,7 +30,7 @@
         </autocomplete>
         <div class="align-self-center mt-0">
           <b-button v-on:click="onSearchWeather" variant="outline-success">
-            Show Weather
+            <font-awesome-icon icon="search"/> Show Weather
           </b-button>
         </div>
       </div>

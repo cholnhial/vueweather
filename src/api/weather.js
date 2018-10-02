@@ -17,3 +17,10 @@ export const getCityWeatherByLocationKey = (locationKey) => {
 
   return Vue.http.get(url)
 }
+
+export const getCityFiveDayForeCastByLocationKey = (locationKey) => {
+  var url = `http://dataservice.accuweather.com/forecasts/v1/daily/5day/${locationKey}?` +
+    `apikey=${config.apiKey}&language=${config.languageLocale}&details=false&metric=true`;
+
+  return Vue.http.get(url)
+}

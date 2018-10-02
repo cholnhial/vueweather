@@ -28,7 +28,7 @@ export default {
 
 .page {
   background-color: rgba(255, 255, 255, 0.5);
-  height: 35.5em;
+  height: 40.5em;
   width: 100%;
   border-radius: 1.5em;
 }

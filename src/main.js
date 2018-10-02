@@ -7,7 +7,14 @@ import BootstrapVue from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import Autocomplete from 'vue2-autocomplete-js'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faSearch, faArrowLeft } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
+library.add(faSearch)
+library.add(faArrowLeft)
+
+Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.use(BootstrapVue)
 
 Vue.config.productionTip = false
