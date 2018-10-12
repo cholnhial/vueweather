@@ -1,6 +1,6 @@
 # vueweather
-
 > A Vue.js weather application
+This application was created to demonstrate some basic features of VueJs such as routing, api access, and data binding.
 
 ## Screenshots
 ## Search
