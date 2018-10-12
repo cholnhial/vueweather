@@ -2,6 +2,10 @@
 
 > A Vue.js weather application
 
+## Screenshots
+![main](/screenshots/main.png?raw=true "Main")
+![weather](/screenshots/weather.png?raw=true "Weather")
+## Search
 ## Build Setup
 
 ``` bash

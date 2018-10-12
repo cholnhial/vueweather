@@ -33,7 +33,7 @@
       </div>
       </div>
     <div class="bottom-bar p-2 mt-1 ">
-      <a class="btn btn-outline-success btn-lg">    <font-awesome-icon icon="arrow-left" />Back</a>
+      <router-link class="btn btn-outline-success btn-lg" to="/">    <font-awesome-icon icon="arrow-left" /> Back</router-link>
     </div>
     </div>
 
